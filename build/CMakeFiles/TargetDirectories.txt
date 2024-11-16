@@ -1,0 +1,3 @@
+/Users/alya/Projects/wireframe-renderer/build/CMakeFiles/render.dir
+/Users/alya/Projects/wireframe-renderer/build/CMakeFiles/edit_cache.dir
+/Users/alya/Projects/wireframe-renderer/build/CMakeFiles/rebuild_cache.dir
