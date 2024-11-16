@@ -7,6 +7,7 @@
 #include "ObjParser.hpp"
 
 bool parseObject(std::string& filename, Object& obj) {
+    // open the file
     std::ifstream file(filename);
 
     if (!file.is_open()) {
@@ -14,38 +15,67 @@ bool parseObject(std::string& filename, Object& obj) {
         return false;
     }
 
+    // read line by line
     std::string line;
     while (std::getline(file, line)) {
+        // get the prefix
         std::istringstream iss(line);
         std::string prefix;
         iss >> prefix;
 
+        // OPTIONS:
+        // - v
+        // - f
+        // - blank
+        // anything else yields an error and the file is skipped
+
+        // vertex
         if (prefix == "v") {
             Vertex vertex;
             iss >> vertex.x >> vertex.y >> vertex.z;
             obj.vertices.push_back(vertex);
-        } else if (prefix == "f") {
+        } 
+        // face
+        else if (prefix == "f") {
             Face face;
             iss >> face.v1 >> face.v2 >> face.v3;
             obj.faces.push_back(face);
-        } else {
-            std::cerr << "Syntax Error: Expected \"v\" or \"f\" recieved " << prefix << " instead" << std::endl;
+        } 
+        // blank or return
+        else if (prefix == "" || prefix == "\n") {
+            // do nothing
+        } 
+
+        // syntax error
+        else {
+            std::cerr << "Syntax Error: Expected \"v\" or \"f\" recieved \"" << static_cast<int>(prefix[0]) << "\" instead" << std::endl;
             return false;
         }
     }
 
+    // tell the os to close the file
     file.close();
     return true;
 }
 
 void printObject(const Object& obj, const std::string& filename) {
+    int count;
     std::cout << "Data from file: " << filename << std::endl;
-    std::cout << "Vertices: " << std::endl;
-    for (const Vertex& vertex : obj.vertices)
-        std::cout << "\t" << vertex.x << " " << vertex.y << " " << vertex.z << std::endl;
 
+    // print each vertex
+    count = 1;
+    std::cout << "Vertices: " << std::endl;
+    for (const Vertex& vertex : obj.vertices) {
+        std::cout << "\t" << count++ << ") " << vertex.x << " " << vertex.y << " " << vertex.z << std::endl;
+    }
+
+    // print each face
+    count = 1;
     std::cout << "Faces: " << std::endl;
-    for (const Face& face : obj.faces) 
-        std::cout << "\t" << face.v1 << " " << face.v2 << " " << face.v3 << std::endl;
+    for (const Face& face : obj.faces) {
+        std::cout << "\t" << count++ << ") " << face.v1 << " " << face.v2 << " " << face.v3 << std::endl;
+    }
+
+    // end
     std::cout << std::endl;
 }

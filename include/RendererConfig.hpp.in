@@ -1,0 +1,2 @@
+#define Renderer_VERSION_MAJOR @Renderer_VERSION_MAJOR@
+#define Renderer_VERSION_MINOR @Renderer_VERSION_MINOR@
