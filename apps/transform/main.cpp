@@ -1,3 +1,7 @@
+/**
+ * Example of using the transform parser
+ */
+
 #include <iostream>
 
 #include "RendererConfig.hpp"

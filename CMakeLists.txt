@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(Renderer VERSION 0.1)
+project(Renderer VERSION 0.2)
 
 # set cpp standard
 set(CMAKE_CXX_STANDARD 23)
