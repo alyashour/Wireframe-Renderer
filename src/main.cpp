@@ -3,6 +3,8 @@
 #include "RendererConfig.hpp"
 #include "ObjParser.hpp"
 
+#include <Eigen/Dense>
+
 int main(int argc, char* argv[]) {
     std::cout << "RENDERER VERSION " << Renderer_VERSION_MAJOR << "." << Renderer_VERSION_MINOR << std::endl;
     
@@ -20,6 +22,8 @@ int main(int argc, char* argv[]) {
             std::cerr << "Skipping file: " << filename << std::endl;
         }
     }
+
+
     
     return 0;
 }
