@@ -10,6 +10,18 @@ set(OUTPUT_PATH ${CMAKE_BINARY_DIR}/include)
 # warnings
 add_compile_options(-Wall -Wextra -Wshadow -Wconversion -Wfloat-equal -pedantic -Werror)
 
+# Enable testing
+enable_testing()
+
+# Fetch Google Test
+include(FetchContent)
+FetchContent_Declare(
+        googletest
+        GIT_REPOSITORY https://github.com/google/googletest.git
+        GIT_TAG release-1.11.0  # You can choose the latest stable release or a specific version
+)
+FetchContent_MakeAvailable(googletest)
+
 # Add Eigen
 find_package(Eigen3 3.3 REQUIRED)  # System-wide install
 
@@ -31,6 +43,4 @@ target_link_libraries(shared PUBLIC Eigen3::Eigen)  # Link Eigen
 # Add programs as subdirectories
 add_subdirectory(apps/parser)
 add_subdirectory(apps/transform)
-
-# Add tests
-# add_subdirectory(tests)
+add_subdirectory(tests)
