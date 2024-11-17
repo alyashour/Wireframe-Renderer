@@ -25,4 +25,4 @@ bool parseTransformFile(
  * @param transform
  * @return
  */
-bool parseTransformFile(std::string& filename, Eigen::Vector4f& transform);
+bool parseTransformFile(std::string& filename, Eigen::Matrix4f& transform);
