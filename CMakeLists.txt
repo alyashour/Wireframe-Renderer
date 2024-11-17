@@ -7,7 +7,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CONFIG_PATH ${CMAKE_SOURCE_DIR}/include)
 set(OUTPUT_PATH ${CMAKE_BINARY_DIR}/include)
 
-# Add Eigen (modify according to your Eigen setup)
+# warnings
+add_compile_options(-Wall -Wextra -Wshadow -Wconversion -Wfloat-equal -pedantic -Werror)
+
+# Add Eigen
 find_package(Eigen3 3.3 REQUIRED)  # System-wide install
 
 #include dirs

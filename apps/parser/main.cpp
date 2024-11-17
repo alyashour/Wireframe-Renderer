@@ -3,21 +3,24 @@
 #include "RendererConfig.hpp"
 #include "ObjParser.hpp"
 
-int main(int argc, char* argv[]) {
-    std::cout << "RENDERER VERSION " << Renderer_VERSION_MAJOR << "." << Renderer_VERSION_MINOR << std::endl;
+using std::cout, std::cin, std::cerr, std::endl;
+using std::string;
+
+int main(const int argc, const char* argv[]) {
+    cout << "RENDERER VERSION " << Renderer_VERSION_MAJOR << "." << Renderer_VERSION_MINOR << endl;
 
     if (argc < 2) {
-        std::cerr << "Usage: " << argv[0] << " file1.obj file2.obj ... filen.obj" << std::endl;
+        cerr << "Usage: " << argv[0] << " file1.obj file2.obj ... fileN.obj" << endl;
         return 1;
     }
 
     for (int i = 1; i < argc; ++i) {
-        std::string filename = argv[i];
+        string filename = argv[i];
         Object obj;
         if (parseObject(filename, obj)) {
             printObject(obj, filename);
         } else {
-            std::cerr << "Skipping file: " << filename << std::endl;
+            cerr << "Skipping file: " << filename << endl;
         }
     }
 

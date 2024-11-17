@@ -31,24 +31,24 @@ bool parseObject(std::string& filename, Object& obj) {
 
         // vertex
         if (prefix == "v") {
-            Vertex vertex;
+            Vertex vertex{};
             iss >> vertex.x >> vertex.y >> vertex.z;
             obj.vertices.push_back(vertex);
         } 
         // face
         else if (prefix == "f") {
-            Face face;
+            Face face{};
             iss >> face.v1 >> face.v2 >> face.v3;
             obj.faces.push_back(face);
         } 
         // blank or return
-        else if (prefix == "" || prefix == "\n") {
+        else if (prefix.empty() || prefix == "\n") {
             // do nothing
         } 
 
         // syntax error
         else {
-            std::cerr << "Syntax Error: Expected \"v\" or \"f\" recieved \"" << static_cast<int>(prefix[0]) << "\" instead" << std::endl;
+            std::cerr << R"(Syntax Error: Expected "v" or "f" received ")" << static_cast<int>(prefix[0]) << "\" instead" << std::endl;
             return false;
         }
     }
